@@ -29,7 +29,7 @@ import org.springframework.data.repository.config.DefaultRepositoryBaseClass;
 import org.springframework.data.spanner.repository.support.SpannerRepositoryFactoryBean;
 
 /**
- * Created by rayt on 3/23/17.
+ * @author Ray Tsang
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

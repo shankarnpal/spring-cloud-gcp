@@ -33,7 +33,7 @@ import org.springframework.data.spanner.core.mapping.SpannerResultSetMapper;
 import org.springframework.data.spanner.core.mapping.SpannerStructObjectMapper;
 
 /**
- * Created by rayt on 3/20/17.
+ * @author Ray Tsang
  */
 public class SpannerReadContextTemplate {
 	private final SpannerMappingContext mappingContext;

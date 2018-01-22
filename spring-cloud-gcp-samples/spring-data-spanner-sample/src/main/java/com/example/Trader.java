@@ -19,7 +19,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.spanner.core.mapping.Table;
 
 /**
- * Created by rayt on 3/20/17.
+ * @author Ray Tsang
  */
 @Table(name = "trader")
 public class Trader {

@@ -31,7 +31,7 @@ import org.springframework.data.mapping.PersistentPropertyAccessor;
 import org.springframework.data.mapping.PropertyHandler;
 
 /**
- * Created by rayt on 3/14/17.
+ * @author Ray Tsang
  */
 public class SpannerMutationFactory {
 	private final SpannerMappingContext mappingContext;

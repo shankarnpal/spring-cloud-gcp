@@ -25,7 +25,7 @@ import com.google.cloud.spanner.ResultSet;
 import org.springframework.beans.BeanUtils;
 
 /**
- * Created by rayt on 3/14/17.
+ * @author Ray Tsang
  */
 public class SpannerResultSetMapper {
 	private final SpannerStructObjectMapper objectMapper;

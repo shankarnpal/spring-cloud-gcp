@@ -40,7 +40,7 @@ import org.springframework.data.spanner.core.mapping.SpannerMutationFactory;
 import org.springframework.data.spanner.core.mapping.SpannerStructObjectMapper;
 
 /**
- * Created by rayt on 3/20/17.
+ * @author Ray Tsang
  */
 public class SpannerTemplate implements SpannerOperations, ApplicationContextAware {
 	private final DatabaseClient databaseClient;

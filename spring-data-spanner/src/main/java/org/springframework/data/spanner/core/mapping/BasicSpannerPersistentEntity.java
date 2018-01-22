@@ -30,7 +30,7 @@ import org.springframework.data.util.TypeInformation;
 import org.springframework.util.StringUtils;
 
 /**
- * Created by rayt on 3/14/17.
+ * @author Ray Tsang
  */
 public class BasicSpannerPersistentEntity<T>
 		extends BasicPersistentEntity<T, SpannerPersistentProperty>

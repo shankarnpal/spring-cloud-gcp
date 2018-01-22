@@ -20,7 +20,7 @@ import org.springframework.data.repository.core.support.PersistentEntityInformat
 import org.springframework.data.spanner.core.mapping.SpannerPersistentEntity;
 
 /**
- * Created by rayt on 3/23/17.
+ * @author Ray Tsang
  */
 public class MappingSpannerEntityInformation<T, ID> extends
 		PersistentEntityInformation<T, ID> implements SpannerEntityInformation<T, ID> {

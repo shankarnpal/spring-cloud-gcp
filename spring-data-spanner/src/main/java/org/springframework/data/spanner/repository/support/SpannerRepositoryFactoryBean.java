@@ -26,7 +26,7 @@ import org.springframework.data.spanner.core.mapping.SpannerMappingContext;
 import org.springframework.util.Assert;
 
 /**
- * Created by rayt on 3/23/17.
+ * @author Ray Tsang
  */
 public class SpannerRepositoryFactoryBean<T extends Repository<S, ID>, S, ID extends Serializable>
 		extends RepositoryFactoryBeanSupport<T, S, ID> {

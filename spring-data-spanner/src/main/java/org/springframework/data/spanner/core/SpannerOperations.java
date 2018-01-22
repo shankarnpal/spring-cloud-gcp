@@ -27,7 +27,7 @@ import com.google.cloud.spanner.Statement;
 import org.springframework.data.spanner.core.mapping.SpannerMappingContext;
 
 /**
- * Created by rayt on 3/20/17.
+ * @author Ray Tsang
  */
 public interface SpannerOperations {
 	SpannerMappingContext getMappingContext();

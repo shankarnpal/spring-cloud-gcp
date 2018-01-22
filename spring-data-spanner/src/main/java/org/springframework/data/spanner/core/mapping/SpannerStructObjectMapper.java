@@ -22,7 +22,7 @@ import com.google.cloud.spanner.Type;
 import org.springframework.data.mapping.PersistentPropertyAccessor;
 
 /**
- * Created by rayt on 3/14/17.
+ * @author Ray Tsang
  */
 public class SpannerStructObjectMapper {
 	private final SpannerMappingContext mappingContext;

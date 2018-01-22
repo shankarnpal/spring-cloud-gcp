@@ -21,7 +21,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.spanner.core.SpannerOperations;
 
 /**
- * Created by rayt on 3/23/17.
+ * @author Ray Tsang
  */
 public interface SpannerRepository<T, ID extends Serializable>
 		extends CrudRepository<T, ID> {

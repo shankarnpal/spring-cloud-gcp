@@ -20,7 +20,7 @@ import org.springframework.data.spanner.core.mapping.Column;
 import org.springframework.data.spanner.core.mapping.Table;
 
 /**
- * Created by rayt on 3/20/17.
+ * @author Ray Tsang
  */
 @Table(name = "trades")
 public class Trade {

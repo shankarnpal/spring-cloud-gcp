@@ -18,7 +18,7 @@ package org.springframework.data.spanner.autoconfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * Created by rayt on 3/20/17.
+ * @author Ray Tsang
  */
 @ConfigurationProperties("gcp.spanner")
 public class SpannerProperties {

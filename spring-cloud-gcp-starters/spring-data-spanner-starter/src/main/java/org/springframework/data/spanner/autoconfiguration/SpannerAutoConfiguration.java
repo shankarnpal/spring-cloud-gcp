@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.spanner.core.AbstractSpannerConfiguration;
 
 /**
- * Created by rayt on 3/20/17.
+ * @author Ray Tsang
  */
 @Configuration
 @EnableConfigurationProperties(SpannerProperties.class)

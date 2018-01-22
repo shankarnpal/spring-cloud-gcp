@@ -26,7 +26,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.spanner.core.mapping.SpannerMappingContext;
 
 /**
- * Created by rayt on 3/20/17.
+ * @author Ray Tsang
  */
 @Configuration
 public abstract class AbstractSpannerConfiguration {

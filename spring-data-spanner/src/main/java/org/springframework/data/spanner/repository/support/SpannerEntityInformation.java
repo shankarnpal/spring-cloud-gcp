@@ -19,7 +19,7 @@ package org.springframework.data.spanner.repository.support;
 import org.springframework.data.repository.core.EntityInformation;
 
 /**
- * Created by rayt on 3/23/17.
+ * @author Ray Tsang
  */
 public interface SpannerEntityInformation<T, ID>
 		extends EntityInformation<T, ID> {

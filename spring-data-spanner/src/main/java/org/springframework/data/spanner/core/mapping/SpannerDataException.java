@@ -16,7 +16,7 @@
 package org.springframework.data.spanner.core.mapping;
 
 /**
- * Created by rayt on 3/20/17.
+ * @author Ray Tsang
  */
 public class SpannerDataException extends RuntimeException {
 	public SpannerDataException() {

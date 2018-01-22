@@ -27,7 +27,7 @@ import org.springframework.data.spanner.core.SpannerOperations;
 import org.springframework.data.spanner.repository.SpannerRepository;
 
 /**
- * Created by rayt on 3/23/17.
+ * @author Ray Tsang
  */
 public class SimpleSpannerRepository<T, ID extends Serializable>
 		implements SpannerRepository<T, ID> {

@@ -19,7 +19,7 @@ package org.springframework.data.spanner.core.mapping;
 import org.springframework.data.mapping.PersistentProperty;
 
 /**
- * Created by rayt on 3/14/17.
+ * @author Ray Tsang
  */
 public interface SpannerPersistentProperty
 		extends PersistentProperty<SpannerPersistentProperty> {

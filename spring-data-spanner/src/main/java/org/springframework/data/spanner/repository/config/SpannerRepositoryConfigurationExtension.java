@@ -27,7 +27,7 @@ import org.springframework.data.repository.config.XmlRepositoryConfigurationSour
 import org.springframework.data.spanner.repository.support.SpannerRepositoryFactoryBean;
 
 /**
- * Created by rayt on 3/23/17.
+ * @author Ray Tsang
  */
 public class SpannerRepositoryConfigurationExtension
 		extends RepositoryConfigurationExtensionSupport {

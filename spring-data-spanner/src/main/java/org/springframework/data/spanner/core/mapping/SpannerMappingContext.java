@@ -27,7 +27,7 @@ import org.springframework.data.mapping.model.SimpleTypeHolder;
 import org.springframework.data.util.TypeInformation;
 
 /**
- * Created by rayt on 3/14/17.
+ * @author Ray Tsang
  */
 public class SpannerMappingContext extends
 		AbstractMappingContext<BasicSpannerPersistentEntity<?>, SpannerPersistentProperty>
