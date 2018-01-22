@@ -26,6 +26,11 @@
         <version>1.0.0.BUILD-SNAPSHOT</version>
     </parent>
     <artifactId>spring-data-spanner</artifactId>
+    <name>Spring Data Spanner Module</name>
+    <description>Spring Data Spanner Module</description>
+    <properties>
+        <main.basedir>${basedir}/../..</main.basedir>
+    </properties>
 
     <dependencies>
         <dependency>
