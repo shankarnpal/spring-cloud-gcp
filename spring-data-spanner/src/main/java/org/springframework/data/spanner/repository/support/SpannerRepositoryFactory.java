@@ -17,8 +17,6 @@
 package org.springframework.data.spanner.repository.support;
 
 import org.springframework.data.mapping.MappingException;
-import org.springframework.data.querydsl.QuerydslPredicateExecutor;
-import org.springframework.data.querydsl.QuerydslUtils;
 import org.springframework.data.repository.core.EntityInformation;
 import org.springframework.data.repository.core.RepositoryInformation;
 import org.springframework.data.repository.core.RepositoryMetadata;
@@ -66,13 +64,6 @@ public class SpannerRepositoryFactory extends RepositoryFactorySupport {
 
 	@Override
 	protected Class<?> getRepositoryBaseClass(RepositoryMetadata repositoryMetadata) {
-		boolean isQueryDslRepository = QuerydslUtils.QUERY_DSL_PRESENT
-				&& QuerydslPredicateExecutor.class
-						.isAssignableFrom(repositoryMetadata.getRepositoryInterface());
-
-		// return isQueryDslRepository ? QueryDslSpannerRepository.class :
-		// SimpleSpannerRepository.class;
 		return SimpleSpannerRepository.class;
-
 	}
 }

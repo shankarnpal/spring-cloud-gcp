@@ -31,7 +31,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
+            <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-spanner-starter</artifactId>
         </dependency>
         <dependency>
