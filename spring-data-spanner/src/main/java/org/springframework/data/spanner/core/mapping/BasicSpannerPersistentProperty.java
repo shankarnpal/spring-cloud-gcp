@@ -26,6 +26,10 @@ import org.springframework.data.mapping.model.PropertyNameFieldNamingStrategy;
 import org.springframework.data.mapping.model.SimpleTypeHolder;
 import org.springframework.util.StringUtils;
 
+/**
+ *
+ * @author Ray Tsang
+ */
 public class BasicSpannerPersistentProperty
 		extends AnnotationBasedPersistentProperty<SpannerPersistentProperty>
 		implements SpannerPersistentProperty {

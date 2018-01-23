@@ -25,16 +25,21 @@ import com.google.cloud.spanner.ResultSet;
 import org.springframework.beans.BeanUtils;
 
 /**
+ * A class that converts Spanner results into the objects they represent.
  * @author Ray Tsang
  */
 public class SpannerResultSetMapper {
 	private final SpannerStructObjectMapper objectMapper;
 
+	/**
+	 * Constructor
+	 * @param objectMapper A mapper can converts a single row from Spanner into an object.
+	 */
 	public SpannerResultSetMapper(SpannerStructObjectMapper objectMapper) {
 		this.objectMapper = objectMapper;
 	}
 
-	public <T> void map(ResultSet resultSet, Class<T> entityClass, List<T> target) {
+	private <T> void map(ResultSet resultSet, Class<T> entityClass, List<T> target) {
 		while (resultSet.next()) {
 			T object = BeanUtils.instantiate(entityClass);
 			this.objectMapper.map(resultSet.getCurrentRowAsStruct(), object);
@@ -42,6 +47,13 @@ public class SpannerResultSetMapper {
 		}
 	}
 
+	/**
+	 * Converts a set of Spanner results into a list of objects.
+	 * @param resultSet The Spanner results to convert.
+	 * @param entityClass The type of the objects the Spanner results represent.
+	 * @param <T> The type of the objects the Spanner results represent.
+	 * @return A list of objects.
+	 */
 	public <T> List<T> mapToUnmodifiableList(ResultSet resultSet, Class<T> entityClass) {
 		ArrayList<T> result = new ArrayList<T>();
 		this.map(resultSet, entityClass, result);

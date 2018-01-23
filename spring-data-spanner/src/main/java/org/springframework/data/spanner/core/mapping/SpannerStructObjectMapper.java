@@ -22,15 +22,26 @@ import com.google.cloud.spanner.Type;
 import org.springframework.data.mapping.PersistentPropertyAccessor;
 
 /**
+ * Populates an object with a row of Spanner results.
  * @author Ray Tsang
  */
 public class SpannerStructObjectMapper {
 	private final SpannerMappingContext mappingContext;
 
+	/**
+	 * Constructor
+	 * @param mappingContext The mapping context which tracks the metadata for the entities stored
+	 * in Spanner.
+	 */
 	public SpannerStructObjectMapper(SpannerMappingContext mappingContext) {
 		this.mappingContext = mappingContext;
 	}
 
+	/**
+	 * Populates an object with data from a Spanner row.
+	 * @param s The struct holding the Spanner row's data.
+	 * @param target The object whose fields will be populated.
+	 */
 	public void map(Struct s, Object target) {
 		Class<?> entityType = target.getClass();
 		BasicSpannerPersistentEntity<?> persistentEntity = this.mappingContext

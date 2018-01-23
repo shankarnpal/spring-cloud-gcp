@@ -31,31 +31,72 @@ import org.springframework.data.mapping.PersistentPropertyAccessor;
 import org.springframework.data.mapping.PropertyHandler;
 
 /**
+ * Factory class that creates Spanner mutation operation objects.
+ *
  * @author Ray Tsang
  */
 public class SpannerMutationFactory {
 	private final SpannerMappingContext mappingContext;
 
+	/**
+	 * Constructor
+	 * @param mappingContext The mapping context that will track the entities' metadata as it changes
+	 * via mutation operations.
+	 */
 	public SpannerMutationFactory(SpannerMappingContext mappingContext) {
 		this.mappingContext = mappingContext;
 	}
 
+	/**
+	 * Store's a single object in Spanner.
+	 * @param object The object to store.
+	 * @param <T> The object's type.
+	 * @return The mutation operation which will store the object.
+	 */
 	public <T> Mutation insert(T object) {
 		return createMutation(Mutation.Op.INSERT, object);
 	}
 
+	/**
+	 * Updates or inserts a single object in Spanner. The columns' values corresponding to the
+	 * object's fields are treated according to Mutation.Op.INSERT_OR_UPDATE.
+	 * @param object The object to update or newly insert.
+	 * @param <T> The object's type.
+	 * @return The mutation operation to perform the action.
+	 */
 	public <T> Mutation upsert(T object) {
 		return createMutation(Mutation.Op.INSERT_OR_UPDATE, object);
 	}
 
+	/**
+	 * Replaces a single object in Spanner. The columns' values corresponding to the object's fields
+	 * are treated according to Mutation.Op.REPLACE.
+	 * @param object The object to store.
+	 * @param <T> The object's type.
+	 * @return The mutation operation to perform this action.
+	 */
 	public <T> Mutation replace(T object) {
 		return createMutation(Mutation.Op.REPLACE, object);
 	}
 
+	/**
+	 * Updates a single object in Spanner. The columns' values corresponding to the
+	 * object's fields are treated according to Mutation.Op.UPDATE.
+	 * @param object The object to update.
+	 * @param <T> The object's type.
+	 * @return The mutation operation to perform the action.
+	 */
 	public <T> Mutation update(T object, String... properties) {
 		return createMutation(Mutation.Op.UPDATE, object, properties);
 	}
 
+	/**
+	 * Deletes several objects from Spanner.
+	 * @param entityClass The type of the objects to delete.
+	 * @param entities A list of objects to delete. Each object can be a subtype of entityClass.
+	 * @param <T> The type of object to delete.
+	 * @return The delete mutation.
+	 */
 	public <T> Mutation delete(Class<T> entityClass, Iterable<? extends T> entities) {
 		final BasicSpannerPersistentEntity<?> persistentEntity = this.mappingContext
 				.getPersistentEntity(entityClass);
@@ -70,6 +111,12 @@ public class SpannerMutationFactory {
 		return Mutation.delete(persistentEntity.tableName(), builder.build());
 	}
 
+	/**
+	 * Deletes a single object from Spanner.
+	 * @param object The object to delete.
+	 * @param <T> The type of the object to delete.
+	 * @return The delete mutation.
+	 */
 	public <T> Mutation delete(T object) {
 		final Class<?> entityType = object.getClass();
 		final BasicSpannerPersistentEntity<?> persistentEntity = this.mappingContext
@@ -86,7 +133,7 @@ public class SpannerMutationFactory {
 		return mutation;
 	}
 
-	public <T> Mutation createMutation(Mutation.Op op, T object, String... properties) {
+	protected <T> Mutation createMutation(Mutation.Op op, T object, String... properties) {
 		final Set<String> includeProperties = new HashSet<>(Arrays.asList(properties));
 		final Class<?> entityType = object.getClass();
 		final BasicSpannerPersistentEntity<?> persistentEntity = this.mappingContext

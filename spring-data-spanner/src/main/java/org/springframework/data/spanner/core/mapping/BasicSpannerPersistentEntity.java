@@ -30,6 +30,8 @@ import org.springframework.data.util.TypeInformation;
 import org.springframework.util.StringUtils;
 
 /**
+ * Represents a Spanner table and its columns' mapping to fields within an entity type.
+ *
  * @author Ray Tsang
  */
 public class BasicSpannerPersistentEntity<T>
@@ -40,6 +42,10 @@ public class BasicSpannerPersistentEntity<T>
 	private final Set<String> columnNames = new HashSet<>();
 	private final Map<String, String> columnNameToPropertyName = new HashMap<>();
 
+	/**
+	 * Constructor
+	 * @param information
+	 */
 	public BasicSpannerPersistentEntity(TypeInformation<T> information) {
 		super(information);
 
