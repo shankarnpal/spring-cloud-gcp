@@ -19,10 +19,17 @@ package org.springframework.data.spanner.core.mapping;
 import org.springframework.data.mapping.PersistentProperty;
 
 /**
+ * Represents a {@link PersistentProperty} stored by Spanner.
+ *
  * @author Ray Tsang
  * @author Chengyuan Zhao
  */
 public interface SpannerPersistentProperty
 		extends PersistentProperty<SpannerPersistentProperty> {
+
+	/**
+	 * Gets the name of the column storing this property in the Spanner table.
+	 * @return the name of the column.
+	 */
 	String getColumnName();
 }

@@ -41,7 +41,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-spanner</artifactId>
+            <artifactId>spring-cloud-gcp-spanner</artifactId>
         </dependency>
     </dependencies>
 </project>

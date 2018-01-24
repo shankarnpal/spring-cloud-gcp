@@ -26,7 +26,7 @@
         <version>1.0.0.BUILD-SNAPSHOT</version>
     </parent>
     <groupId>org.springframework.data</groupId>
-    <artifactId>spring-data-spanner</artifactId>
+    <artifactId>spring-cloud-gcp-spanner</artifactId>
     <name>Spring Data Spanner Module</name>
     <description>Spring Data Spanner Module</description>
     <properties>

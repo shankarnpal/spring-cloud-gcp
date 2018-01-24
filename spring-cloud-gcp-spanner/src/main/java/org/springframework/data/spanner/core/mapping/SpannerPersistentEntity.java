@@ -19,14 +19,30 @@ package org.springframework.data.spanner.core.mapping;
 import org.springframework.data.mapping.PersistentEntity;
 
 /**
+ * Represents a {@link PersistentEntity} stored by Spanner.
+ *
  * @author Ray Tsang
  * @author Chengyuan Zhao
  */
 public interface SpannerPersistentEntity<T>
 		extends PersistentEntity<T, SpannerPersistentProperty> {
+
+	/**
+	 * Gets the name of the Spanner table.
+	 * @return the name of the table.
+	 */
 	String tableName();
 
+	/**
+	 * Gets the property corresponding to the given column name.
+	 * @param columnName the name of the column corresponding to a stored property.
+	 * @return the property.
+	 */
 	SpannerPersistentProperty getPersistentPropertyByColumnName(String columnName);
 
+	/**
+	 * Gets the column names stored for this entity.
+	 * @return the column names.
+	 */
 	Iterable<String> columns();
 }

@@ -22,9 +22,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.data.mapping.model.BasicPersistentEntity;
 import org.springframework.data.util.TypeInformation;
 import org.springframework.util.StringUtils;
@@ -37,7 +34,7 @@ import org.springframework.util.StringUtils;
  */
 public class BasicSpannerPersistentEntity<T>
 		extends BasicPersistentEntity<T, SpannerPersistentProperty>
-		implements SpannerPersistentEntity<T>, ApplicationContextAware {
+		implements SpannerPersistentEntity<T> {
 
 	private final String tableName;
 	private final Set<String> columnNames = new HashSet<>();
@@ -71,11 +68,6 @@ public class BasicSpannerPersistentEntity<T>
 
 	protected String extractTableNameFromClass(Class<?> entityClass) {
 		return StringUtils.uncapitalize(entityClass.getSimpleName());
-	}
-
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext)
-			throws BeansException {
 	}
 
 	@Override

@@ -16,9 +16,6 @@
 
 package org.springframework.data.spanner.core.mapping;
 
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.data.mapping.context.AbstractMappingContext;
 import org.springframework.data.mapping.model.FieldNamingStrategy;
 import org.springframework.data.mapping.model.Property;
@@ -31,13 +28,10 @@ import org.springframework.data.util.TypeInformation;
  * @author Chengyuan Zhao
  */
 public class SpannerMappingContext extends
-		AbstractMappingContext<BasicSpannerPersistentEntity<?>, SpannerPersistentProperty>
-		implements ApplicationContextAware {
+		AbstractMappingContext<BasicSpannerPersistentEntity<?>, SpannerPersistentProperty> {
 
 	private static final FieldNamingStrategy DEFAULT_NAMING_STRATEGY = PropertyNameFieldNamingStrategy.INSTANCE;
 	private FieldNamingStrategy fieldNamingStrategy = DEFAULT_NAMING_STRATEGY;
-
-	private ApplicationContext context;
 
 	public SpannerMappingContext() {
 
@@ -49,20 +43,10 @@ public class SpannerMappingContext extends
 	}
 
 	@Override
-	public void setApplicationContext(ApplicationContext applicationContext)
-			throws BeansException {
-		this.context = applicationContext;
-	}
-
-	@Override
 	protected <T> BasicSpannerPersistentEntity<T> createPersistentEntity(
 			TypeInformation<T> typeInformation) {
 		BasicSpannerPersistentEntity<T> entity = new BasicSpannerPersistentEntity<T>(
 				typeInformation);
-
-		if (this.context != null) {
-			entity.setApplicationContext(this.context);
-		}
 
 		return entity;
 	}

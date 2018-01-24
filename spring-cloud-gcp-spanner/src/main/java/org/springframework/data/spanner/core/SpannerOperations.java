@@ -27,6 +27,7 @@ import com.google.cloud.spanner.Statement;
 import org.springframework.data.spanner.core.mapping.SpannerMappingContext;
 
 /**
+ * Defines the
  * @author Ray Tsang
  */
 public interface SpannerOperations {
