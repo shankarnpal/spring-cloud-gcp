@@ -41,6 +41,7 @@ import org.springframework.data.spanner.core.mapping.SpannerStructObjectMapper;
 
 /**
  * @author Ray Tsang
+ * @author Chengyuan Zhao
  */
 public class SpannerTemplate implements SpannerOperations, ApplicationContextAware {
 	private final DatabaseClient databaseClient;

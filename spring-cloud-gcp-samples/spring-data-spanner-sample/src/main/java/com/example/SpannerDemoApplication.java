@@ -25,6 +25,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.spanner.core.SpannerTemplate;
 import org.springframework.data.spanner.repository.config.EnableSpannerRepositories;
 
+/**
+ * @author Ray Tsang
+ * @author Chengyuan Zhao
+ */
 @SpringBootApplication
 @EnableSpannerRepositories
 public class SpannerDemoApplication implements CommandLineRunner {

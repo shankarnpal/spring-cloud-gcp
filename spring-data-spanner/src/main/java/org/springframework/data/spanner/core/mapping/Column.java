@@ -25,6 +25,7 @@ import java.lang.annotation.Target;
  * Annotation that allows specifying column name different from the field's name.
  *
  * @author Ray Tsang
+ * @author Chengyuan Zhao
  */
 @Documented
 @Target(ElementType.FIELD)

@@ -30,6 +30,7 @@ import org.springframework.data.spanner.core.mapping.SpannerMutationFactory;
 
 /**
  * @author Ray Tsang
+ * @author Chengyuan Zhao
  */
 public class SpannerTransactionContext {
 	private final TransactionContext transactionContext;

@@ -27,6 +27,7 @@ import org.springframework.data.spanner.core.mapping.SpannerMappingContext;
 
 /**
  * @author Ray Tsang
+ * @author Chengyuan Zhao
  */
 @Configuration
 public abstract class AbstractSpannerConfiguration {

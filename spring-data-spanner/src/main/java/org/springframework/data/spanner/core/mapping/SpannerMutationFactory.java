@@ -34,6 +34,7 @@ import org.springframework.data.mapping.PropertyHandler;
  * Factory class that creates Spanner mutation operation objects.
  *
  * @author Ray Tsang
+ * @author Chengyuan Zhao
  */
 public class SpannerMutationFactory {
 	private final SpannerMappingContext mappingContext;

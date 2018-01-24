@@ -34,6 +34,7 @@ import org.springframework.data.spanner.core.mapping.SpannerStructObjectMapper;
 
 /**
  * @author Ray Tsang
+ * @author Chengyuan Zhao
  */
 public class SpannerReadContextTemplate {
 	private final SpannerMappingContext mappingContext;

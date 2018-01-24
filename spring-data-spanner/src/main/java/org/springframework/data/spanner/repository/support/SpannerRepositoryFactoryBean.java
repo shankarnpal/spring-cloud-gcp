@@ -27,6 +27,7 @@ import org.springframework.util.Assert;
 
 /**
  * @author Ray Tsang
+ * @author Chengyuan Zhao
  */
 public class SpannerRepositoryFactoryBean<T extends Repository<S, ID>, S, ID extends Serializable>
 		extends RepositoryFactoryBeanSupport<T, S, ID> {

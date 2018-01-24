@@ -23,7 +23,9 @@ import org.springframework.data.mapping.PersistentPropertyAccessor;
 
 /**
  * Populates an object with a row of Spanner results.
+ *
  * @author Ray Tsang
+ * @author Chengyuan Zhao
  */
 public class SpannerStructObjectMapper {
 	private final SpannerMappingContext mappingContext;

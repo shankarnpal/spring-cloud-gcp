@@ -28,6 +28,7 @@ import org.springframework.data.spanner.core.mapping.SpannerPersistentEntity;
 
 /**
  * @author Ray Tsang
+ * @author Chengyuan Zhao
  */
 public class SpannerRepositoryFactory extends RepositoryFactorySupport {
 	private final SpannerOperations operations;

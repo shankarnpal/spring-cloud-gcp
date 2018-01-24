@@ -30,6 +30,7 @@ import org.springframework.data.spanner.repository.support.SpannerRepositoryFact
 
 /**
  * @author Ray Tsang
+ * @author Chengyuan Zhao
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

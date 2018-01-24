@@ -23,6 +23,7 @@ import org.springframework.data.repository.config.RepositoryConfigurationExtensi
 
 /**
  * @author Ray Tsang
+ * @author Chengyuan Zhao
  */
 public class SpannerRepositoriesRegistrar
 		extends RepositoryBeanDefinitionRegistrarSupport {

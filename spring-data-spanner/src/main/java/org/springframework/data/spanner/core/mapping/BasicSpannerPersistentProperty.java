@@ -27,8 +27,10 @@ import org.springframework.data.mapping.model.SimpleTypeHolder;
 import org.springframework.util.StringUtils;
 
 /**
+ * Represents a property of an entity stored in Spanner.
  *
  * @author Ray Tsang
+ * @author Chengyuan Zhao
  */
 public class BasicSpannerPersistentProperty
 		extends AnnotationBasedPersistentProperty<SpannerPersistentProperty>

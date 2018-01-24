@@ -21,6 +21,7 @@ import org.springframework.data.spanner.core.mapping.Table;
 
 /**
  * @author Ray Tsang
+ * @author Chengyuan Zhao
  */
 @Table(name = "trades")
 public class Trade {

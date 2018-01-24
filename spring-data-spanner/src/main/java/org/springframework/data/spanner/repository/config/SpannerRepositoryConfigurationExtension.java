@@ -28,6 +28,7 @@ import org.springframework.data.spanner.repository.support.SpannerRepositoryFact
 
 /**
  * @author Ray Tsang
+ * @author Chengyuan Zhao
  */
 public class SpannerRepositoryConfigurationExtension
 		extends RepositoryConfigurationExtensionSupport {

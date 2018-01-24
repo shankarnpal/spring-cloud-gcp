@@ -25,6 +25,7 @@ import java.lang.annotation.Target;
 /**
  * Annotates classes with a custom name.
  * @author Ray Tsang
+ * @author Chengyuan Zhao
  */
 @Documented
 @Target(ElementType.TYPE)

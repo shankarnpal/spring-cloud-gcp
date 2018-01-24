@@ -23,6 +23,7 @@ import org.springframework.data.spanner.core.AbstractSpannerConfiguration;
 
 /**
  * @author Ray Tsang
+ * @author Chengyuan Zhao
  */
 @Configuration
 @EnableConfigurationProperties(SpannerProperties.class)

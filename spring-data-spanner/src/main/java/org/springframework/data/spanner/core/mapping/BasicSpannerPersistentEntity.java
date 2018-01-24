@@ -33,6 +33,7 @@ import org.springframework.util.StringUtils;
  * Represents a Spanner table and its columns' mapping to fields within an entity type.
  *
  * @author Ray Tsang
+ * @author Chengyuan Zhao
  */
 public class BasicSpannerPersistentEntity<T>
 		extends BasicPersistentEntity<T, SpannerPersistentProperty>

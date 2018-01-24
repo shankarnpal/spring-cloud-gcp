@@ -28,6 +28,7 @@ import org.springframework.data.util.TypeInformation;
 
 /**
  * @author Ray Tsang
+ * @author Chengyuan Zhao
  */
 public class SpannerMappingContext extends
 		AbstractMappingContext<BasicSpannerPersistentEntity<?>, SpannerPersistentProperty>

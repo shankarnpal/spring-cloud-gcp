@@ -28,6 +28,7 @@ import org.springframework.data.spanner.repository.SpannerRepository;
 
 /**
  * @author Ray Tsang
+ * @author Chengyuan Zhao
  */
 public class SimpleSpannerRepository<T, ID extends Serializable>
 		implements SpannerRepository<T, ID> {

@@ -26,7 +26,9 @@ import org.springframework.beans.BeanUtils;
 
 /**
  * A class that converts Spanner results into the objects they represent.
+ *
  * @author Ray Tsang
+ * @author Chengyuan Zhao
  */
 public class SpannerResultSetMapper {
 	private final SpannerStructObjectMapper objectMapper;

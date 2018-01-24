@@ -20,6 +20,7 @@ import org.springframework.data.spanner.core.mapping.Table;
 
 /**
  * @author Ray Tsang
+ * @author Chengyuan Zhao
  */
 @Table(name = "trader")
 public class Trader {

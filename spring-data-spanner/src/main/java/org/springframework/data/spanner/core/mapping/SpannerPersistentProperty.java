@@ -20,6 +20,7 @@ import org.springframework.data.mapping.PersistentProperty;
 
 /**
  * @author Ray Tsang
+ * @author Chengyuan Zhao
  */
 public interface SpannerPersistentProperty
 		extends PersistentProperty<SpannerPersistentProperty> {
