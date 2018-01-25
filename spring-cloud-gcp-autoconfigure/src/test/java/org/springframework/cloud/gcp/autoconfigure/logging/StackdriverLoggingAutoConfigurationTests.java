@@ -23,11 +23,6 @@ import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cloud.gcp.logging.CompositeTraceIdExtractor;
-import org.springframework.cloud.gcp.logging.TraceIdExtractor;
-import org.springframework.cloud.gcp.logging.TraceIdLoggingWebMvcInterceptor;
-import org.springframework.cloud.gcp.logging.XCloudTraceIdExtractor;
-import org.springframework.cloud.gcp.logging.ZipkinTraceIdExtractor;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 

@@ -44,11 +44,10 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.commons.util.IdUtils;
+import org.springframework.cloud.gcp.autoconfigure.trace.sleuth.LabelExtractor;
+import org.springframework.cloud.gcp.autoconfigure.trace.sleuth.StackdriverTraceSpanListener;
 import org.springframework.cloud.gcp.core.GcpProjectIdProvider;
 import org.springframework.cloud.gcp.core.UsageTrackingHeaderProvider;
-import org.springframework.cloud.gcp.trace.TraceServiceClientTraceConsumer;
-import org.springframework.cloud.gcp.trace.sleuth.LabelExtractor;
-import org.springframework.cloud.gcp.trace.sleuth.StackdriverTraceSpanListener;
 import org.springframework.cloud.sleuth.Sampler;
 import org.springframework.cloud.sleuth.SpanAdjuster;
 import org.springframework.cloud.sleuth.SpanNamer;

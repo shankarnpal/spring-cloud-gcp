@@ -16,34 +16,20 @@
 
 package org.springframework.cloud.gcp.autoconfigure.logging;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
- * Enum values represent the order and combination of predefined trace ID extractors that
- * can be used.
- *
- * @see XCloudTraceIdExtractor
- * @see ZipkinTraceIdExtractor
- * @see CompositeTraceIdExtractor
- * @see TraceIdExtractor
+ * An extractor that can provide a trace ID from an HTTP request.
  *
  * @author Chengyuan Zhao
  */
-public enum TraceIdExtractorType {
+public interface TraceIdExtractor {
+
 	/**
-	 * Uses only {@link XCloudTraceIdExtractor}
+	 * Extract trace ID from the HTTP request.
+	 *
+	 * @param req The HTTP servlet request.
+	 * @return The trace ID or null, if none found.
 	 */
-	XCLOUD,
-	/**
-	 * Uses only {@link ZipkinTraceIdExtractor}
-	 */
-	ZIPKIN,
-	/**
-	 * Uses the XCloud extractor followed by the Zipkin extractor if no trace ID was found
-	 * by the former.
-	 */
-	XCLOUD_ZIPKIN,
-	/**
-	 * Uses the Zipkin extractor followed by the XCloud extractor if no trace ID was found
-	 * by the former.
-	 */
-	ZIPKIN_XCLOUD
+	String extractTraceIdFromRequest(HttpServletRequest req);
 }
