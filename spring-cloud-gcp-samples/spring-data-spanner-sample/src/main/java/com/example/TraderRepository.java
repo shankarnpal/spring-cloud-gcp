@@ -25,4 +25,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 @RepositoryRestResource
 public interface TraderRepository extends CrudRepository<Trader, String> {
+  Trader findTraderByName(String name);
 }

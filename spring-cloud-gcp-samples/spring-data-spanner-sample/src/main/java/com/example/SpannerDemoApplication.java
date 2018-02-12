@@ -71,6 +71,12 @@ public class SpannerDemoApplication implements CommandLineRunner {
 			}
 		});
 
+		try {
+			System.out.println(traderRepository.findTraderByName("Ray"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		this.spannerTemplate.findAll(Trade.class).stream().forEach(System.out::println);
 
 		long count = this.tradeRepository.count();
