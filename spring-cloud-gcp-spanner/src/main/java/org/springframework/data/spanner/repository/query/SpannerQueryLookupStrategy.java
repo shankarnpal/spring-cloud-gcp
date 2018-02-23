@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.QueryLookupStrategy;
 import org.springframework.data.repository.query.QueryMethod;
 import org.springframework.data.repository.query.RepositoryQuery;
 import org.springframework.data.spanner.core.SpannerOperations;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
 
 public class SpannerQueryLookupStrategy implements QueryLookupStrategy {
 
@@ -31,6 +32,12 @@ public class SpannerQueryLookupStrategy implements QueryLookupStrategy {
       ProjectionFactory factory, NamedQueries namedQueries) {
     QueryMethod queryMethod = new QueryMethod(method, metadata, factory);
 
-    return new SpannerQuery(queryMethod, evaluationContextProvider, spannerOperations);
+    if (namedQueries.hasQuery(queryMethod.getNamedQueryName())) {
+      String sql = namedQueries.getQuery(queryMethod.getNamedQueryName());
+      return new SpannerSQLQuery(queryMethod, evaluationContextProvider, spannerOperations, new SpelExpressionParser(), sql);
+    }
+
+
+    return new PartTreeSpannerQuery(queryMethod, evaluationContextProvider, spannerOperations);
   }
 }

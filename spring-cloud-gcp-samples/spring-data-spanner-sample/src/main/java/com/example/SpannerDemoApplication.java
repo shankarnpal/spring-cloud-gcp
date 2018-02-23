@@ -30,7 +30,7 @@ import org.springframework.data.spanner.repository.config.EnableSpannerRepositor
  * @author Chengyuan Zhao
  */
 @SpringBootApplication
-@EnableSpannerRepositories
+@EnableSpannerRepositories(namedQueriesLocation = "classpath:/spanner-named-queries.properties")
 public class SpannerDemoApplication implements CommandLineRunner {
 	@Autowired
 	SpannerTemplate spannerTemplate;
@@ -76,6 +76,13 @@ public class SpannerDemoApplication implements CommandLineRunner {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+		try {
+			System.out.println(traderRepository.anotherFindTraderByName("Ray"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 
 		this.spannerTemplate.findAll(Trade.class).stream().forEach(System.out::println);
 

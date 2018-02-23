@@ -15,6 +15,7 @@
  */
 package com.example;
 
+import org.springframework.data.annotation.QueryAnnotation;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
@@ -26,4 +27,5 @@ import org.springframework.stereotype.Repository;
 @RepositoryRestResource
 public interface TraderRepository extends CrudRepository<Trader, String> {
   Trader findTraderByName(String name);
+  Trader anotherFindTraderByName(String name);
 }
