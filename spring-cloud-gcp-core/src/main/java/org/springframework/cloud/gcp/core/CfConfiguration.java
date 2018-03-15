@@ -19,13 +19,17 @@ package org.springframework.cloud.gcp.core;
 import com.google.api.gax.core.CredentialsProvider;
 
 /**
+ * Cloud Foundry environment configuration.
+ *
  * @author João André Martins
  */
-public interface PcfConfiguration {
+public interface CfConfiguration {
 
 	CredentialsProvider getStorageCredentialsProvider();
 
 	CredentialsProvider getPubSubCredentialsProvider();
 
-	CredentialsProvider getCloudSqlCredentialsProvider();
+	CredentialsProvider getCloudSqlMySqlCredentialsProvider();
+
+	CredentialsProvider getCloudSqlPostgreSqlCredentialsProvider();
 }

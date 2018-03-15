@@ -28,9 +28,9 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.gcp.autoconfigure.core.GcpProperties;
+import org.springframework.cloud.gcp.core.CfConfiguration;
 import org.springframework.cloud.gcp.core.DefaultCredentialsProvider;
 import org.springframework.cloud.gcp.core.GcpProjectIdProvider;
-import org.springframework.cloud.gcp.core.PcfConfiguration;
 import org.springframework.cloud.gcp.core.UsageTrackingHeaderProvider;
 import org.springframework.cloud.gcp.storage.GoogleStorageProtocolResolver;
 import org.springframework.cloud.gcp.storage.GoogleStorageProtocolResolverSettings;
@@ -60,14 +60,19 @@ public class GcpStorageAutoConfiguration {
 	public static Storage storage(CredentialsProvider credentialsProvider,
 			GcpStorageProperties gcpStorageProperties,
 			GcpProjectIdProvider projectIdProvider,
-			@Autowired(required = false) PcfConfiguration pcfConfiguration) throws IOException {
+			@Autowired(required = false) CfConfiguration cfConfiguration) throws IOException {
 		Credentials credentials;
 
-		if (gcpStorageProperties.getCredentials().getLocation() != null) {
-			credentials = new DefaultCredentialsProvider(gcpStorageProperties).getCredentials();
+		CredentialsProvider cfCredentialsProvider = null;
+		if (cfConfiguration != null) {
+			cfCredentialsProvider = cfConfiguration.getStorageCredentialsProvider();
 		}
-		else if (pcfConfiguration != null) {
-			credentials = pcfConfiguration.getStorageCredentialsProvider().getCredentials();
+
+		if (cfCredentialsProvider != null) {
+			credentials = cfCredentialsProvider.getCredentials();
+		}
+		else if (gcpStorageProperties.getCredentials().getLocation() != null) {
+			credentials = new DefaultCredentialsProvider(gcpStorageProperties).getCredentials();
 		}
 		else {
 			credentials = credentialsProvider.getCredentials();

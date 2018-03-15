@@ -23,11 +23,11 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cloud.gcp.core.CfConfiguration;
+import org.springframework.cloud.gcp.core.DefaultCfConfiguration;
 import org.springframework.cloud.gcp.core.DefaultCredentialsProvider;
 import org.springframework.cloud.gcp.core.DefaultGcpProjectIdProvider;
-import org.springframework.cloud.gcp.core.DefaultPcfConfiguration;
 import org.springframework.cloud.gcp.core.GcpProjectIdProvider;
-import org.springframework.cloud.gcp.core.PcfConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -79,7 +79,7 @@ public class GcpContextAutoConfiguration {
 	@Bean
 	@ConditionalOnMissingBean
 	@ConditionalOnProperty("VCAP_SERVICES")
-	public PcfConfiguration pcfConfiguration() {
-		return new DefaultPcfConfiguration(System.getenv("VCAP_SERVICES"));
+	public CfConfiguration pcfConfiguration() {
+		return new DefaultCfConfiguration(System.getenv("VCAP_SERVICES"));
 	}
 }
