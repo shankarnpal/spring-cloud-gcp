@@ -16,6 +16,7 @@
 
 package org.springframework.cloud.gcp.autoconfigure.sql;
 
+import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Collections;
@@ -26,6 +27,7 @@ import com.google.cloud.sql.CredentialFactory;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import org.springframework.cloud.gcp.core.DefaultCfConfiguration;
 import org.springframework.cloud.gcp.core.GcpScope;
 
 /**
@@ -41,6 +43,8 @@ public class SqlCredentialFactory implements CredentialFactory {
 	public static final String CREDENTIAL_LOCATION_PROPERTY_NAME =
 			"GOOGLE_CLOUD_SQL_CREDS_LOCATION";
 
+	public static final String CF_SQL_SERVICE_ACCOUNT = "GOOGLE_CLOUD_SQL_CF_SERVICE_ACCOUNT";
+
 	private static final Log LOGGER = LogFactory.getLog(SqlCredentialFactory.class);
 
 	@Override
@@ -48,6 +52,43 @@ public class SqlCredentialFactory implements CredentialFactory {
 		// TODO(joaomartins): Consider supporting Spring Resources as credential locations. There
 		// would need to be a way to create or inject a Spring context here statically, to load
 		// the resource from there.
+		Credential finalCredential = getCloudFoundryCredential();
+
+		if (finalCredential == null) {
+			finalCredential = getFileCredential();
+		}
+
+		return finalCredential;
+	}
+
+	private Credential getCloudFoundryCredential() {
+		String vcapServicesEnvVar = System.getenv("VCAP_SERVICES");
+		if (vcapServicesEnvVar != null) {
+			DefaultCfConfiguration cfConfiguration = new DefaultCfConfiguration(vcapServicesEnvVar);
+
+			String cfDatabaseType = System.getProperty(CF_SQL_SERVICE_ACCOUNT);
+			if (cfDatabaseType != null
+					&& (cfDatabaseType.equals("google-cloudsql-mysql")
+					|| cfDatabaseType.equals("google-cloudsql-postgres"))) {
+				try {
+					return GoogleCredential.fromStream(
+							new ByteArrayInputStream(
+									cfConfiguration.getPrivateKeyDataForServiceFromVcapJson(
+											cfDatabaseType)))
+							.createScoped(Collections.singleton(GcpScope.SQLADMIN.getUrl()));
+				}
+				catch (IOException ioe) {
+					LOGGER.warn("There was an error loading Cloud SQL credential from Cloud "
+							+ "Foundry.", ioe);
+					return null;
+				}
+			}
+		}
+
+		return null;
+	}
+
+	private Credential getFileCredential() {
 		String credentialResourceLocation = System.getProperty(CREDENTIAL_LOCATION_PROPERTY_NAME);
 		if (credentialResourceLocation == null) {
 			if (LOGGER.isDebugEnabled()) {

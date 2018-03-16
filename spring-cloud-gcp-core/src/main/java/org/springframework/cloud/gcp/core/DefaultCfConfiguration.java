@@ -64,7 +64,16 @@ public class DefaultCfConfiguration implements CfConfiguration {
 		return parseCredentialsProviderFromVcapJson("google-cloudsql-postgresql");
 	}
 
+	// TODO(joaomartins): Rename and document this.
 	private CredentialsProvider parseCredentialsProviderFromVcapJson(String jsonKey) {
+		byte[] privateKeyData = getPrivateKeyDataForServiceFromVcapJson(jsonKey);
+
+		return privateKeyData != null
+				? () -> GoogleCredentials.fromStream(new ByteArrayInputStream(privateKeyData))
+				: null;
+	}
+
+	public byte[] getPrivateKeyDataForServiceFromVcapJson(String jsonKey) {
 		if (this.configurationJsonObject.has(jsonKey)) {
 			JsonElement serviceElement = this.configurationJsonObject.get(jsonKey);
 			if (serviceElement.isJsonArray() && ((JsonArray) serviceElement).size() > 0) {
@@ -76,9 +85,8 @@ public class DefaultCfConfiguration implements CfConfiguration {
 					if (jsonCredentialsObject.has("PrivateKeyData")) {
 						LOGGER.info("Pivotal Cloud Foundry credentials for " + jsonKey
 								+ " found: " + jsonCredentialsObject.get("Name"));
-						return () -> GoogleCredentials.fromStream(new ByteArrayInputStream(
-								Base64.getDecoder().decode(jsonCredentialsObject
-										.get("PrivateKeyData").getAsString())));
+						return Base64.getDecoder().decode(
+								jsonCredentialsObject.get("PrivateKeyData").getAsString());
 					}
 				}
 			}

@@ -121,6 +121,13 @@ public class GcpCloudSqlAutoConfiguration {
 						+ defaultProvider.getJdbcDriverClass());
 			}
 
+			// Tells SqlCredentialFactory it should use the MySQL service account for Cloud Foundry.
+			System.setProperty(
+					SqlCredentialFactory.CF_SQL_SERVICE_ACCOUNT, "google-cloudsql-mysql");
+			// TODO(joaomartins): Remove this hack.
+			System.setProperty(CredentialFactory.CREDENTIAL_FACTORY_PROPERTY,
+					SqlCredentialFactory.class.getName());
+
 			return defaultProvider;
 		}
 
@@ -145,6 +152,11 @@ public class GcpCloudSqlAutoConfiguration {
 						+ defaultProvider.getJdbcUrl() + " with driver "
 						+ defaultProvider.getJdbcDriverClass());
 			}
+
+			// Tells SqlCredentialFactory it should use the PostgreSQL service account for Cloud
+			// Foundry.
+			System.setProperty(
+					SqlCredentialFactory.CF_SQL_SERVICE_ACCOUNT, "google-cloudsql-postgres");
 
 			return defaultProvider;
 		}
