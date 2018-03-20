@@ -121,12 +121,14 @@ public class GcpCloudSqlAutoConfiguration {
 						+ defaultProvider.getJdbcDriverClass());
 			}
 
-			// Tells SqlCredentialFactory it should use the MySQL service account for Cloud Foundry.
-			System.setProperty(
-					SqlCredentialFactory.CF_SQL_SERVICE_ACCOUNT, "google-cloudsql-mysql");
-			// TODO(joaomartins): Remove this hack.
-			System.setProperty(CredentialFactory.CREDENTIAL_FACTORY_PROPERTY,
-					SqlCredentialFactory.class.getName());
+			if (System.getenv("VCAP_SERVICES") != null) {
+				// Tells SqlCredentialFactory it should use the MySQL service account for
+				// Cloud Foundry.
+				System.setProperty(
+						SqlCredentialFactory.CF_SQL_SERVICE_ACCOUNT, "google-cloudsql-mysql");
+				System.setProperty(CredentialFactory.CREDENTIAL_FACTORY_PROPERTY,
+						SqlCredentialFactory.class.getName());
+			}
 
 			return defaultProvider;
 		}
@@ -137,14 +139,16 @@ public class GcpCloudSqlAutoConfiguration {
 	 * The PostgreSql Configuration for the {@link DefaultCloudSqlJdbcInfoProvider}
 	 * based on the {@link DatabaseType#POSTGRESQL}.
 	 */
-	@ConditionalOnClass({ com.google.cloud.sql.postgres.SocketFactory.class, org.postgresql.Driver.class })
+	@ConditionalOnClass({ com.google.cloud.sql.postgres.SocketFactory.class,
+			org.postgresql.Driver.class })
 	@ConditionalOnMissingBean(CloudSqlJdbcInfoProvider.class)
 	static class PostgreSqlJdbcInfoProviderConfiguration {
 
 		@Bean
-		public CloudSqlJdbcInfoProvider defaultPostgreSqlJdbcInfoProvider(GcpCloudSqlProperties gcpCloudSqlProperties) {
-			CloudSqlJdbcInfoProvider defaultProvider =
-					new DefaultCloudSqlJdbcInfoProvider(gcpCloudSqlProperties, DatabaseType.POSTGRESQL);
+		public CloudSqlJdbcInfoProvider defaultPostgreSqlJdbcInfoProvider(
+				GcpCloudSqlProperties gcpCloudSqlProperties) {
+			CloudSqlJdbcInfoProvider defaultProvider = new DefaultCloudSqlJdbcInfoProvider(
+					gcpCloudSqlProperties, DatabaseType.POSTGRESQL);
 
 			if (LOGGER.isInfoEnabled()) {
 				LOGGER.info("Default " + DatabaseType.POSTGRESQL.name()
@@ -153,10 +157,12 @@ public class GcpCloudSqlAutoConfiguration {
 						+ defaultProvider.getJdbcDriverClass());
 			}
 
-			// Tells SqlCredentialFactory it should use the PostgreSQL service account for Cloud
-			// Foundry.
-			System.setProperty(
-					SqlCredentialFactory.CF_SQL_SERVICE_ACCOUNT, "google-cloudsql-postgres");
+			if (System.getenv("VCAP_SERVICES") != null) {
+				// Tells SqlCredentialFactory it should use the PostgreSQL service account for Cloud
+				// Foundry.
+				System.setProperty(
+						SqlCredentialFactory.CF_SQL_SERVICE_ACCOUNT, "google-cloudsql-postgres");
+			}
 
 			return defaultProvider;
 		}
@@ -176,7 +182,8 @@ public class GcpCloudSqlAutoConfiguration {
 		@Bean
 		@Primary
 		@ConditionalOnBean(CloudSqlJdbcInfoProvider.class)
-		public DataSourceProperties cloudSqlDataSourceProperties(GcpCloudSqlProperties gcpCloudSqlProperties,
+		public DataSourceProperties cloudSqlDataSourceProperties(
+				GcpCloudSqlProperties gcpCloudSqlProperties,
 				DataSourceProperties properties,
 				GcpProperties gcpProperties,
 				CloudSqlJdbcInfoProvider cloudSqlJdbcInfoProvider) {
@@ -218,17 +225,20 @@ public class GcpCloudSqlAutoConfiguration {
 		 * <p>If user didn't specify credentials, the socket factory already does the right thing by
 		 * using the application default credentials by default. So we don't need to do anything.
 		 */
-		private void setCredentialsProperty(GcpCloudSqlProperties gcpCloudSqlProperties, GcpProperties gcpProperties) {
+		private void setCredentialsProperty(GcpCloudSqlProperties gcpCloudSqlProperties,
+				GcpProperties gcpProperties) {
 			File credentialsLocationFile;
 
 			try {
 				// First tries the SQL configuration credential.
 				if (gcpCloudSqlProperties != null
 						&& gcpCloudSqlProperties.getCredentials() != null) {
-					credentialsLocationFile = gcpCloudSqlProperties.getCredentials().getLocation().getFile();
+					credentialsLocationFile =
+							gcpCloudSqlProperties.getCredentials().getLocation().getFile();
 				}
 				// Then, the global credential.
-				else if (gcpProperties != null && gcpProperties.getCredentials().getLocation() != null) {
+				else if (gcpProperties != null
+						&& gcpProperties.getCredentials().getLocation() != null) {
 					// A resource might not be in the filesystem, but the Cloud SQL credential must.
 					credentialsLocationFile = gcpProperties.getCredentials().getLocation().getFile();
 				}
